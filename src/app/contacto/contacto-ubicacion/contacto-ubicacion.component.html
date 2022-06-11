@@ -1,0 +1,65 @@
+<p-toast position="top-center"></p-toast>
+<div class="container">
+    <div class="col-12 col-sm-12 col-md-12 col-lg-12 gx-0">
+        <section class="section pb-5">
+            <h2 class="section-heading h1 pt-4">Contáctenos</h2>
+            <div class="row">
+                <div class="col-xl-6 col-lg-6 col-md-6 col-xs-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <br>
+                            <form (ngSubmit)="enviar()" autocomplete="off" [formGroup]="formulario">
+                                <label for="form-name">Nombre</label>
+                                <div class="md-form">
+                                    <i class="fas fa-user prefix grey-text"></i>
+                                    <input type="text" id="nombre" class="form-control" formControlName="nombre">
+                                    <span class="form-text text-danger" *ngIf="campoEsValido('nombre')">
+                    Debe escribir las iniciales en mayúsculas
+                  </span>
+                                    <br>
+                                    <label for="form-name">Apellidos</label>
+                                    <br>
+                                </div>
+                                <div class="md-form">
+                                    <i class="fas fa-envelope prefix grey-text"></i>
+                                    <input type="text" id="apellidos" class="form-control" formControlName="apellidos">
+                                    <span class="form-text text-danger" *ngIf="campoEsValido('apellidos')">
+                    Debe escribir las iniciales en mayúsculas
+                  </span>
+                                    <br>
+                                    <label for="form-email">Email</label>
+                                </div>
+                                <div class="md-form">
+                                    <i class="fas fa-tag prefix grey-text"></i>
+                                    <input type="text" id="email" class="form-control" formControlName="email"><br>
+                                    <span class="form-text text-danger" *ngIf="campoEsValido('email')">
+                    Debe escribir un email
+                  </span><br>
+                                    <label for="form-Subject">Comentario</label>
+                                </div>
+                                <div class="md-form">
+                                    <i class="fas fa-pencil-alt prefix grey-text"></i>
+                                    <textarea id="comentario" class="form-control md-textarea" formControlName="comentario" rows="3" placeholder="Describa el motivo de su consulta"></textarea>
+                                    <br>
+                                    <span class="form-text text-danger" *ngIf="campoEsValido('comentario')">
+                    Debe escribir un mensaje válido
+                  </span>
+                                </div>
+                                <div class="text-center mt-4">
+                                    <button id="enviar" class="btn btn-success" [disabled]="formulario.invalid">Enviar</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-6 col-xs-12">
+                    <div id="map-container-google-11" class="z-depth-1-half map-container-6">
+                        <iframe class="col-12 col-sm-12 " src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3163.4424229026895!2d-5.874638684688953!3d37.54463897980203!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd125ce603bed70f%3A0xcd0e9d8b39d715f0!2sInstituto%20de%20Educaci%C3%B3n%20Secundaria%20Jacarand%C3%A1!5e0!3m2!1ses!2ses!4v1644313800839!5m2!1ses!2ses"
+                            height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </div>
+</div>

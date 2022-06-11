@@ -1,0 +1,201 @@
+<p-toast position="top-center"></p-toast>
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-6">
+            <h3 class="text-center">Lista de Jugadores</h3>
+            <div cdkDropList #todoList="cdkDropList" [cdkDropListData]="listajugadores" [cdkDropListConnectedTo]="[delanterouno,delanterodos,delanterotres,miduno,middos,
+      midtres,midcuatro,defuno,defdos,deftres,portero]" class="example-list" (cdkDropListDropped)="drop($event)">
+                <div class="example-box" *ngFor="let jugador of listajugadores" cdkDrag>
+                    <div class="card" style="width: 9rem;" align="center">
+                        <img class="card-img-top" src="https://cdn.icon-icons.com/icons2/1369/PNG/512/-person_90382.png" style="height: 20%;
+            width: 20%;" alt="">
+                        <div class="card-body">
+                            <p class="card-text">{{jugador.nombre}}</p>
+                            <p class="card-text">{{jugador.indiceVictoria | number : '1.2-2'}} %</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-6" style="background-image: url('../../../assets/img/campito.png');
+    background-repeat: no-repeat;">
+            <div class="row">
+                <div class="col-4">
+                    <div cdkDropList #delanterouno="cdkDropList" [cdkDropListData]="del1" [cdkDropListConnectedTo]="[todoList]" class="example-list " (cdkDropListDropped)="drop($event)" align="center">
+                        <p class="text-white">DEL</p>
+
+                        <div class="example-box" *ngFor="let item of del1" cdkDrag>
+                            <div class="card" style="width: 9rem;" align="center">
+                                <img class="card-img-top" src="https://cdn.icon-icons.com/icons2/1369/PNG/512/-person_90382.png" style="height: 20%;
+            width: 20%;" alt="">
+                                <div class="card-body">
+                                    <p class="card-text">{{item.nombre}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div cdkDropList #delanterodos="cdkDropList" [cdkDropListData]="del2" [cdkDropListConnectedTo]="[todoList]" class="example-list" (cdkDropListDropped)="drop($event)" align="center">
+                        <p class="text-white" align="center">DEL</p>
+
+                        <div class="example-box" *ngFor="let item of del2" cdkDrag>
+                            <div class="card" style="width: 9rem;" align="center">
+                                <img class="card-img-top" src="https://cdn.icon-icons.com/icons2/1369/PNG/512/-person_90382.png" style="height: 20%;
+            width: 20%;" alt="">
+                                <div class="card-body">
+                                    <p class="card-text">{{item.nombre}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div cdkDropList #delanterotres="cdkDropList" [cdkDropListData]="del3" [cdkDropListConnectedTo]="[todoList]" class="example-list" (cdkDropListDropped)="drop($event)" align="center">
+                        <p class="text-white">DEL</p>
+
+                        <div class="example-box" *ngFor="let item of del3" cdkDrag>
+                            <div class="card" style="width: 9rem;" align="center">
+                                <img class="card-img-top" src="https://cdn.icon-icons.com/icons2/1369/PNG/512/-person_90382.png" style="height: 20%;
+            width: 20%;">
+                                <div class="card-body">
+                                    <p class="card-text">{{item.nombre}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-3">
+                    <div cdkDropList #miduno="cdkDropList" [cdkDropListData]="mid1" [cdkDropListConnectedTo]="[todoList]" class="example-list" (cdkDropListDropped)="drop($event)" align="center">
+                        <p class="text-white">MID</p>
+
+                        <div class="example-box" *ngFor="let item of mid1" cdkDrag>
+                            <div class="card" style="width: 7rem;" align="center">
+                                <img class="card-img-top" src="https://cdn.icon-icons.com/icons2/1369/PNG/512/-person_90382.png" style="height: 20%;
+            width: 20%;" alt="">
+                                <div class="card-body">
+                                    <p class="card-text">{{item.nombre}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div cdkDropList #middos="cdkDropList" [cdkDropListData]="mid2" [cdkDropListConnectedTo]="[todoList]" class="example-list" (cdkDropListDropped)="drop($event)" align="center">
+                        <p class="text-white">MID</p>
+
+                        <div class="example-box" *ngFor="let item of mid2" cdkDrag>
+                            <div class="card" style="width: 7rem;" align="center">
+                                <img class="card-img-top" src="https://cdn.icon-icons.com/icons2/1369/PNG/512/-person_90382.png" style="height: 20%;
+          width: 20%;" alt="">
+                                <div class="card-body">
+                                    <p class="card-text">{{item.nombre}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div cdkDropList #midtres="cdkDropList" [cdkDropListData]="mid3" [cdkDropListConnectedTo]="[todoList]" class="example-list" (cdkDropListDropped)="drop($event)" align="center">
+                        <p class="text-white">MID</p>
+
+                        <div class="example-box" *ngFor="let item of mid3" cdkDrag>
+                            <div class="card" style="width: 7rem;" align="center">
+                                <img class="card-img-top" src="https://cdn.icon-icons.com/icons2/1369/PNG/512/-person_90382.png" style="height: 20%;
+        width: 20%;" alt="">
+                                <div class="card-body">
+                                    <p class="card-text">{{item.nombre}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div cdkDropList #midcuatro="cdkDropList" [cdkDropListData]="mid4" [cdkDropListConnectedTo]="[todoList]" class="example-list" (cdkDropListDropped)="drop($event)" align="center">
+                        <p class="text-white">MID</p>
+
+                        <div class="example-box" *ngFor="let item of mid4" cdkDrag>
+                            <div class="card" style="width: 7rem;">
+                                <img class="card-img-top" src="https://cdn.icon-icons.com/icons2/1369/PNG/512/-person_90382.png" style="height: 20%;
+        width: 20%;" alt="">
+                                <div class="card-body">
+                                    <p class="card-text">{{item.nombre}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-4">
+                    <div cdkDropList #defuno="cdkDropList" [cdkDropListData]="def1" [cdkDropListConnectedTo]="[todoList]" class="example-list" (cdkDropListDropped)="drop($event)" align="center">
+                        <p class="text-white">DEF</p>
+
+                        <div class="example-box" *ngFor="let item of def1" cdkDrag>
+                            <div class="card" style="width: 9rem;" align="center">
+                                <img class="card-img-top" src="https://cdn.icon-icons.com/icons2/1369/PNG/512/-person_90382.png" style="height: 20%;
+            width: 20%;" alt="">
+                                <div class="card-body">
+                                    <p class="card-text">{{item.nombre}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div cdkDropList #defdos="cdkDropList" [cdkDropListData]="def2" [cdkDropListConnectedTo]="[todoList]" class="example-list" (cdkDropListDropped)="drop($event)" align="center">
+                        <p class="text-white">DEF</p>
+
+                        <div class="example-box" *ngFor="let item of def2" cdkDrag>
+                            <div class="card" style="width: 9rem;" align="center">
+                                <img class="card-img-top" src="https://cdn.icon-icons.com/icons2/1369/PNG/512/-person_90382.png" style="height: 20%;
+          width: 20%;" alt="">
+                                <div class="card-body">
+                                    <p class="card-text">{{item.nombre}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div cdkDropList #deftres="cdkDropList" [cdkDropListData]="def3" [cdkDropListConnectedTo]="[todoList]" class="example-list" (cdkDropListDropped)="drop($event)" align="center">
+                        <p class="text-white">DEF</p>
+
+                        <div class="example-box" *ngFor="let item of def3" cdkDrag>
+                            <div class="card" style="width: 9rem;" align="center">
+                                <img class="card-img-top" src="https://cdn.icon-icons.com/icons2/1369/PNG/512/-person_90382.png" style="height: 20%;
+        width: 20%;" alt="">
+                                <div class="card-body">
+                                    <p class="card-text">{{item.nombre}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12" align="center">
+                    <div cdkDropList #portero="cdkDropList" [cdkDropListData]="por" [cdkDropListConnectedTo]="[todoList]" class="example-list" (cdkDropListDropped)="drop($event)">
+                        <p class="text-white">POR</p>
+
+                        <div class="example-box" *ngFor="let item of por" cdkDrag>
+                            <div class="card" style="width: 9rem;" align="center">
+
+                                <div class="card-body">
+                                    <p class="card-text">{{item.nombre}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row container">
+    <div class="col">
+        <button (click)="guardaralineacion()">Guardar Alineacion</button>
+    </div>
+</div>

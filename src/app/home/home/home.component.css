@@ -1,0 +1,24 @@
+p {
+    font-size: 14px;
+}
+
+li {
+    padding-bottom: 20px;
+    list-style: none
+}
+
+li::before {
+    padding-bottom: 2ex;
+    content: '';
+    display: inline-block;
+    height: 20px;
+    width: 20px;
+    background-image: url("./../../../assets/img/balon.svg");
+    margin-right: 10px;
+    background-position: center center;
+    vertical-align: middle;
+}
+
+.btn {
+    width: 25%;
+}

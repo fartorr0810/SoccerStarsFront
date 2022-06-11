@@ -1,0 +1,108 @@
+<p-toast position="top-center"></p-toast>
+<br><br>
+<div class="row">
+    <div class="col-10"></div>
+    <div class="col-1"><i title="Nuevo mensaje" *ngIf="rol!='USER SIN LIGA'" (click)="cargarFormulario()" class="pi pi-send puntero" style="font-size: 20px;"></i></div>
+    <div class="col-1"><i title="Listado mensajes" *ngIf="rol!='USER SIN LIGA'" (click)="obtenerCorreos()" class="pi pi-history puntero" style="font-size: 20px;"></i></div>
+</div>
+<div class="table-responsive">
+    <!--Indicamos el datatable con las opciones y el disparador-->
+    <br>
+    <table class="table" datatable [dtOptions]="opcionesDataTables" [dtTrigger]="triggerDatatables">
+        <thead>
+            <tr>
+                <th>Emisor</th>
+                <th>Tipo</th>
+                <th>Mensaje</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <!--Recorremos con un For la respuesta-->
+        <tbody>
+            <tr *ngFor="let mensaje of listademensajes">
+                <td>{{mensaje.nombreemisor}}</td>
+                <td>{{mensaje.tipo}}</td>
+                <td *ngIf="mensaje.tipo!='Mensajeria'">
+                    {{mensaje.mensaje}}
+                </td>
+                <td *ngIf="mensaje.tipo=='Mensajeria'" class="puntero" (click)="detallesCorreo(mensaje.mensaje,mensaje.asunto)">{{formatTextMensajeria(mensaje.mensaje)}}</td>
+                <td *ngIf="mensaje.tipo=='unir' || mensaje.tipo=='Comprar' || mensaje.tipo=='Mensajeria'">
+                    <button *ngIf="mensaje.tipo=='unir' || mensaje.tipo=='Comprar'" class="btn btn-success" name="aceptar" (click)="respuestaSolicitud(true,mensaje.id)">Aceptar</button>&nbsp;
+                    <button *ngIf="mensaje.tipo=='unir' || mensaje.tipo=='Comprar'" class="btn btn-success" name="rechazar" (click)="respuestaSolicitud(false,mensaje.id)">Rechazar</button>&nbsp;
+                    <button *ngIf="mensaje.tipo=='unir'" class="btn btn-success" name="borrar" (click)="eliminarMensaje(mensaje.id)">Borrar</button>
+                    <button *ngIf="mensaje.tipo=='Mensajeria'" class="btn btn-success" name="responder" (click)="cargarFormularioRespuesta(mensaje)">Responder</button>&nbsp;
+                    <button *ngIf="mensaje.tipo=='Mensajeria'" class="btn btn-success" name="borrar" (click)="eliminarMensaje(mensaje.id)">Borrar</button>&nbsp;
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<p-confirmDialog [baseZIndex]="10000"></p-confirmDialog>
+<p-dialog [(visible)]="dialog" header="Redactar correo" [breakpoints]="{'960px': '75vw', '640px': '100vw'}" [style]="{width: '400px', height: '450px'}">
+    <form class="custom-form" (ngSubmit)="enviarcorreo()" [formGroup]="formCorreo" *ngIf="mostrarFormulario">
+        <div class="form-group">
+            <div class="col-md-4 mb-3">
+                <label for="destino">Destinatario:<span class="red">*</span></label>
+                <select class="custom-select" formControlName="destino" id="destino" name="destino">
+                <option  value="" disabled>Seleccione usuario</option>
+                <option name="equipo" value={{usuario.id}} *ngFor="let usuario of usuarios">{{usuario.nombreusuario}}</option>
+            </select>
+                <span class="form-text text-danger" *ngIf="notValidField('destino')">{{destinatarioErrorMsg}}</span><br>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-4 mb-3">
+                <label for="asunto">Asunto:</label>
+                <input type="text" formControlName="asunto" id="asunto" name="asunto">
+                <span class="form-text text-danger" *ngIf="notValidField('asunto')">{{asuntoErrorMsg}}</span><br>
+            </div>
+        </div>
+        <div class="form-group">
+            <div col-md-4 mb-3>
+                <label for="mensaje">Mensaje:<span class="red">*</span></label><br>
+                <textarea formControlName="mensaje" class="form-control" id="mensaje" name="mensaje"></textarea>
+                <span class="form-text text-danger" *ngIf="notValidField('mensaje')">{{mensajeErrorMsg}}</span>
+            </div>
+
+        </div><br>
+        <button class="btn btn-success" id="enviar" type="submit" [disabled]="formCorreo.invalid">Enviar</button>
+    </form>
+</p-dialog>
+
+
+<p-dialog [(visible)]="dialogResp" header="Responder correo" [breakpoints]="{'960px': '75vw', '640px': '100vw'}" [style]="{width: '400px', height: '450px'}">
+    <form class="custom-form" (ngSubmit)="enviarcorreoRespuesta()" [formGroup]="formCorreoRespuesta" *ngIf="mostrarFormularioRespuesta">
+        <div class="form-group">
+            <div class="col-md-4 mb-3">
+                <label for="destino">Destinatario:<span class="red">*</span></label>
+                <input class="form-control" type="text" placeholder={{usuarioRespuesta.nombreusuario}} readonly=»readonly>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-4 mb-3">
+                <label for="asunto">Asunto:</label>
+                <input type="text" formControlName="asunto" id="asunto" name="asunto">
+                <span class="form-text text-danger" *ngIf="notValidFieldRespuesta('asunto')">{{asuntoErrorRespuestaMsg}}</span><br>
+            </div>
+        </div>
+        <div class="form-group">
+            <div col-md-4 mb-3>
+                <label for="mensaje">Mensaje:<span class="red">*</span></label><br>
+                <textarea formControlName="mensaje" class="form-control" id="mensaje" name="mensaje"></textarea>
+                <span class="form-text text-danger" *ngIf="notValidFieldRespuesta('mensaje')">{{mensajeErrorRespuestaMsg}}</span>
+            </div>
+
+        </div><br>
+        <button class="btn btn-success" id="enviar" type="submit" [disabled]="formCorreoRespuesta.invalid">Enviar</button>
+    </form>
+</p-dialog>
+
+<p-dialog [(visible)]="dialogDetails" header="Mensaje detallado" [breakpoints]="{'960px': '75vw', '640px': '100vw'}" [style]="{width: '400px', height: '450px'}">
+    <p><b>{{asuntoMensaje}}</b></p>
+    <div class="form-group">
+        <div col-md-4 mb-3>
+            <textarea disabled class="form-control" [rows]="10" [cols]="20" pInputTextarea autoResize="autoResize">{{mensajeDetails}}</textarea>
+        </div>
+    </div>
+</p-dialog>

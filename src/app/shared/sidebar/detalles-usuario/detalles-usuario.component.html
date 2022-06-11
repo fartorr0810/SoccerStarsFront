@@ -1,0 +1,48 @@
+<div *ngIf="rol=='Admitido' && show">
+    <div class="row">
+        <div class="col-3">
+            <span>Nombre: {{childMessage}}</span>
+        </div>
+        <div class="col-3">
+            <span>Liga: {{liga.nombre}}</span>
+        </div>
+        <div class="col-3">
+            <span *ngIf="!equipoName"> Equipo: {{equipo.nombre}}</span>
+            <span *ngIf="equipoName">Equipo: {{equipoName}}</span>
+        </div>
+        <div class="col-3">
+            <span *ngIf="!presupuesto">Presupuesto: {{equipo.presupuesto | number}} €</span>
+            <span *ngIf="presupuesto">Presupuesto: {{presupuesto | number}} €</span>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="rol=='ADMIN' && show">
+    <div class="row">
+        <div class="col-5">
+            <span>Nombre: {{childMessage}}</span>
+        </div>
+        <div class="col-5">
+            <span *ngIf="!ligaParticipantes">Liga: {{liga.nombre}} </span>
+            <span *ngIf="ligaParticipantes">Liga: {{liga.nombre}}</span>
+        </div>
+        <div class="col-2">
+            <span *ngIf="!ligaParticipantes">Miembros: {{miembros}}</span>
+            <span *ngIf="ligaParticipantes">Miembros: {{obtenerMiembros()}}</span>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="rol=='USER SIN LIGA' && show">
+    <div class="row">
+        <div class="col-5">
+            <span>Nombre: {{childMessage}}</span>
+        </div>
+        <div class="col-5">
+            No esta admitido en ninguna liga
+        </div>
+        <div class="col-2">
+            Miembros: {{miembros}}
+        </div>
+    </div>
+</div>

@@ -1,0 +1,40 @@
+<p-toast position="top-center"></p-toast>
+<div class="mask d-flex align-items-center h-100 gradient-custom-3">
+    <div class="container h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+                <div class="card" style="border-radius: 15px;">
+                    <div class="card-body p-5">
+                        <div class="container">
+                            <!--Declarramos formulario Template-->
+                            <h2>Crear mensaje de comunidad</h2>
+                            <form (ngSubmit)="enviarMensaje()" autocomplete="off" #formulario="ngForm" class="well form-horizontal">
+                                <div class="form-group">
+                                    <label> Nombre de la liga: </label>
+                                    <!--Input indicando el campo que va a rellenar-->
+                                    <input type="text" id="nombre" name="nombre" [(ngModel)]="noti.liga" #nombre="ngModel" class="form-control" placeholder="Introduzca el nombre de la liga" required disabled>
+                                    <span class="form-text text-danger" *ngIf="formulario.controls['nombre']?.errors && formulario.controls['nombre']?.touched">
+                                      Debe introducir un nombre valido.
+                                    </span><br>
+                                    <label>Mensaje:</label>
+                                    <!--Input indicando el campo que va a rellenar-->
+                                    <input type="text" id="mensaje" name="mensaje" [(ngModel)]="noti.mensaje" #mensaje="ngModel" class="form-control" placeholder="Introduzca el mensaje" required>
+                                    <span class="form-text text-danger" *ngIf="formulario.controls['mensaje']?.errors && formulario.controls['mensaje']?.touched">
+                                      Debe introducir un mensaje valido.
+                                    </span>
+
+                                </div><br>
+                                <!--Boton desactivado hasta que no se rellene todos los campos
+                          y sean validos-->
+                                <div class="d-flex justify-content-center">
+                                    <button type="submit" id="boton" class="btn btn-success float-end " [disabled]="formulario.invalid">Crear</button>
+                                </div>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

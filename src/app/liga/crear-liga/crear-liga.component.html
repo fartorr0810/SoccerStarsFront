@@ -1,0 +1,34 @@
+<p-toast position="top-center"></p-toast>
+<div class="mask d-flex align-items-center h-100 gradient-custom-3">
+    <div class="container h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+                <div class="card" style="border-radius: 15px;">
+                    <div class="card-body p-5">
+                        <div class="container">
+                            <!--Declarramos formulario Template-->
+                            <form (ngSubmit)="crearLiga()" autocomplete="off" #formulario="ngForm" class="well form-horizontal">
+                                <div class="form-group text-center">
+                                    <h2> Nombre de la liga: </h2>
+                                    <!--Input indicando el campo que va a rellenar-->
+                                    <input type="text" id="nombre" name="nombre" [(ngModel)]="liga.nombre" #nombre="ngModel" class="form-control" placeholder="Introduzca el nombre de la liga" required>
+                                    <span class="input-group"></span>
+                                    <span class="form-text text-danger" *ngIf="formulario.controls['nombre']?.errors && formulario.controls['nombre']?.touched">
+                                      Debe introducir un nombre valido.
+                                    </span>
+                                </div>
+                                <!--Boton desactivado hasta que no se rellene todos los campos
+                          y sean validos--><br>
+                                <div class="text-center">
+                                    <button type="submit" id="boton" class="btn btn-success" [disabled]="formulario.invalid">Crear</button>
+                                </div>
+
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,45 @@
+<p-toast position="top-center"></p-toast>
+<section class="vh-100 bg-image" *ngIf="mostrar">
+    <div class="mask d-flex align-items-center h-100 gradient-custom-3">
+        <div class="container h-100">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+                    <div class="card" style="border-radius: 15px;">
+                        <div class="card-body p-4">
+                            <h2 class="text-uppercase text-center mb-5">Edita tu equipo</h2>
+                            <div class="card border-white text-white">
+                                <div class="box" *ngIf="equipo.imagen!=null">
+                                    <img class="mx-auto d-block" src="{{obtenerImagen(equipo)}}">
+                                </div>
+
+                                <img class="mx-auto d-block" *ngIf="equipo.imagen==null" src="../../../assets/img/logo.png">
+                            </div>
+                            <!--Formulario reactivo-->
+                            <!--Tiene span con mensajes de error en caso de que lo introducido sea invalido
+                        en todos los inputs-->
+                            <br><br><br>
+                            <form [formGroup]="myForm" (ngSubmit)="editar()" enctype="multipart/form-data">
+                                <div class="form-outline mb-4">
+                                    <label class="form-label">Nombre del Equipo</label>
+                                    <!--Input con el campo al que va a rellenar,-->
+                                    <input type="text" id="nombre" name="nombre" placeholder="Nombre del equipo" formControlName="nombre" class="form-control form-control-lg" />
+                                    <span class="form-text text-danger" *ngIf="campoEsValido('nombre')">
+                                  </span>
+                                </div>
+                                <div class="form-outline mb-4">
+                                    <input formControlName="file" id="file" name="file" type="file" class="form-control" (change)="onFileChange($event)" />
+                                    <span class="form-text text-danger" *ngIf="campoEsValido('file')">
+                                    </span>
+                                </div>
+                                <div class="d-flex justify-content-center">
+                                    <!--Boton que se activa si todos los campos tienen valores validos y llama al metodo de registrar.-->
+                                    <button id="boton" type="submit" class="btn btn-success float-end " [disabled]="myForm.invalid">Editar</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

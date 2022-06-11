@@ -1,0 +1,18 @@
+.activo {
+    background-color: rgb(170, 170, 170);
+    border-radius: 15px;
+}
+
+.activo a {
+    color: green;
+}
+
+.dockCustom {
+    position: relative !important;
+    top: 10rem !important;
+}
+
+.dockCustomAdmitido {
+    position: relative !important;
+    top: 12.5rem !important;
+}

@@ -1,0 +1,39 @@
+<p-toast position="top-center"></p-toast>
+<br><br>
+<div class="row justify-content-center" *ngIf="mostrar">
+    <p-tabView *ngIf="liga.jornadas.length>0" [scrollable]="true">
+        <p-tabPanel *ngFor="let jornada of liga.jornadas" header="{{formatHeaderTab(jornada)}}">
+            <div class="p-0 seguimiento">
+                <p-table [value]="jornada.partidos" dataKey="name" responsiveLayout="scroll">
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th colspan="7"></th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-partido let-expanded="expanded">
+                        <tr>
+                            <td><strong>{{partido.local.nombre}}</strong></td>
+                            <td style="text-align: center;">
+                                <img *ngIf="partido.local.imagen!=null" src={{obtenerImagen(partido.local)}} alt={{partido.local.nombre}}>
+                                <img *ngIf="partido.local.imagen==null" src="./../../../assets/img/logo.png">
+                            </td>
+                            <td><span *ngIf="partido.jugado"><strong>{{partido.golesLocal}}</strong></span></td>
+                            <td *ngIf="partido.jugado">-</td>
+                            <td><span *ngIf="partido.jugado"><strong>{{partido.golesVisitante}}</strong></span></td>
+                            <td style="text-align: center;">
+                                <img *ngIf="partido.visitante.imagen!=null" src={{obtenerImagen(partido.visitante)}} alt={{partido.visitante.nombre}}>
+                                <img *ngIf="partido.visitante.imagen==null" src="./../../../assets/img/logo.png">
+                            </td>
+                            <td><strong>{{partido.visitante.nombre}}</strong></td>
+                        </tr>
+                    </ng-template>
+                </p-table><br>
+                <div class="row" style="text-align: center;">
+                    <div class="col-12">
+                        <button name="boton" class="button" *ngIf="!jornada.jugado && jornada.jugadaAnterior" (click)="jugarJornada(jornada.id)"><strong>Jugar</strong></button>
+                    </div>
+                </div>
+            </div>
+        </p-tabPanel>
+
+    </p-tabView>

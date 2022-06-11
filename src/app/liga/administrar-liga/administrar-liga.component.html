@@ -1,0 +1,36 @@
+<p-toast position="top-center"></p-toast>
+<div class="m-2  row justify-content-center align-items-center">
+    <div class="col-auto p-5 test-center">
+        <table style="width: 100%" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
+            <thead>
+                <tr>
+                    <th class="ancho-columna">Escudo</th>
+                    <th class="ancho-columna">Equipo</th>
+                    <th class="ancho-columna">Presupuesto</th>
+                    <th class="ancho-columna">Opciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let equipo of listaEquipos">
+                    <td>
+                        <div class="card-body" *ngIf="equipo.imagen!=null">
+                            <div class="box">
+                                <img src={{obtenerImagen(equipo)}}>
+                            </div>
+                        </div>
+                        <div class="card-body" *ngIf="equipo.imagen==null">
+                            <div class="box"><img src="./../../../assets/img/logo.png"></div>
+                        </div>
+
+                    </td>
+                    <td>
+                        <h3 *ngIf="equipo.nombre!=null">{{equipo.nombre}}</h3>
+                        <h3 *ngIf="equipo.nombre==null">JacaFutbol</h3>
+                    </td>
+                    <td>{{equipo.presupuesto| number}} €</td>
+                    <td><button class="btn btn-dark" name="eliminar" (click)="eliminarEquipo(equipo.id)">Eliminar</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

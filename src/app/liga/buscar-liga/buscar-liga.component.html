@@ -1,0 +1,23 @@
+<p-toast position="top-center"></p-toast>
+<div class="table-responsive">
+    <!--Indicamos el datatable con las opciones y el disparador-->
+    <table class="table" datatable [dtOptions]="opcionesDataTables" [dtTrigger]="triggerDatatables">
+        <thead>
+            <tr>
+                <th>Nombre de la liga</th>
+                <th>Administrador</th>
+                <th>Miembros</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <!--Recorremos con un For la respuesta-->
+        <tbody>
+            <tr *ngFor="let liga of listadeligas">
+                <td>{{liga.nombre}}</td>
+                <td>{{liga.nombreAdmin}}</td>
+                <td>{{liga.miembros}}</td>
+                <td><button id="boton" name="boton" class="btn btn-success" (click)="enviarSolicitud(liga.nombre)">Enviar Solicitud</button></td>
+            </tr>
+        </tbody>
+    </table>
+</div>

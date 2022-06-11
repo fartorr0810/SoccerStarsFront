@@ -1,0 +1,121 @@
+<p-toast position="top-center"></p-toast>
+
+<div class="d-flex align-items-center justify-content-center justify-content-md-between py-3 rounded-left rounded-bottom rounded-top" style="background-color: #3e6540;">
+    <a href="/" class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-white text-decoration-none">
+        <img class="bi me-5" width="200px" height="60px" src="../../../../assets/img/logoverdadero.png" alt="Logo de la pagina" />
+    </a>
+
+    <div class="col-md-3 text-end" *ngIf="userDetails">
+        <a routerLink="/buzon" class="">
+            <img class="bi me-2 img-fluid" width="50" height="50" src="../../../assets/img/sobre.png" alt="Icono de mensajes" />
+        </a>
+        <a [routerLink]="['/usuario']" class="">
+            <img class="bi me-2 img-fluid" width="50" height="50" src="../../../assets/img/userprofilee.png" alt="Imagen del usuario" />
+        </a>
+        <a id="cerrarsesion" class="" style="outline: none" (click)="cerrarSesion()">
+            <img class="bi me-2 img-fluid" width="50" height="50" src="../../../assets/img/exit.png" alt="Cerrar sesion" />
+        </a>
+    </div>
+</div>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-2 col-md-3 col-xl-1 px-sm-2 px-0 rounded-left rounded-bottom rounded-top" style="background-color: #3e6540;
+        width: 11%;">
+            <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
+                <a href="/" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+                    <span *ngIf="!userDetails" class="fs-5 d-none d-sm-inline text-white">Bienvenido a Soccer Stars</span>
+                </a>
+
+
+                <div *ngIf="!userDetails">
+                    <p-dock [model]="dockItems" position="left" class="dockCustom">
+                        <ng-template pTemplate="item" let-item>
+                            <img [src]="item.icon" title="Login" *ngIf="item.label=='Login'" [alt]="item.label" width="100%">
+                            <img [src]="item.icon" title="Registro" *ngIf="item.label=='Registro'" [alt]="item.label" width="100%">
+                            <img [src]="item.icon" title="Contacto" *ngIf="item.label=='Contacto'" [alt]="item.label" width="100%">
+                        </ng-template>
+                    </p-dock>
+                </div>
+
+                <div *ngIf="userDetails && userDetails?.rol =='USER SIN LIGA'" class="w-100">
+                    <p-dock [model]="dockItemsSinLiga" position="left" class="dockCustom">
+                        <ng-template pTemplate="item" let-item>
+                            <img [src]="item.icon" [alt]="item.label" width="100%">
+                        </ng-template>
+                    </p-dock>
+                </div>
+
+
+                <div *ngIf="userDetails && userDetails?.rol =='ADMIN'" class="w-100">
+                    <p-dock [model]="dockItemsAdmin" position="left" class="dockCustom">
+                        <ng-template pTemplate="item" let-item>
+                            <img [src]="item.icon" title="Noticias comunidad" *ngIf="item.label=='Comunidad'" [alt]="item.label" width="90%">
+                            <img [src]="item.icon" title="Gestión liga" *ngIf="item.label=='Liga'" (click)="abrirMenuLiga()" [alt]="item.label" width="90%">
+                            <img [src]="item.icon" title="Jornadas" *ngIf="item.label=='Ver jornadas'" [alt]="item.label" width="90%">
+                            <img [src]="item.icon" title="Contacto" *ngIf="item.label=='Contacto'" [alt]="item.label" width="90%">
+                        </ng-template>
+                    </p-dock>
+                </div>
+
+                <div *ngIf="userDetails && userDetails?.rol =='Admitido'">
+                    <p-dock [model]="dockItemsAdmitido" position="left" class="dockCustomAdmitido">
+                        <ng-template pTemplate="item" let-item>
+                            <img [src]="item.icon" title="Noticias comunidad" *ngIf="item.label=='Mensaje'" [alt]="item.label" width="80%">
+                            <img [src]="item.icon" title="Gestión Equipo" *ngIf="item.label=='Equipo'" (click)="abrirMenuEquipo()" [alt]="item.label" width="80%">
+                            <img [src]="item.icon" title="Clasificación" *ngIf="item.label=='Clasificacion'" [alt]="item.label" width="80%">
+                            <img [src]="item.icon" title="Mercado" *ngIf="item.label=='Mercado'" [alt]="item.label" width="80%">
+                            <img [src]="item.icon" title="Contacto" *ngIf="item.label=='Contacto'" [alt]="item.label" width="80%">
+                        </ng-template>
+                    </p-dock>
+                </div>
+            </div>
+        </div>
+        <div class="col py-2">
+            <div *ngIf="userDetails && userDetails?.rol=='USER SIN LIGA'" class="bg-primary rounded">
+                <p class="text-white" *ngIf="!userName">
+                    <div class="row">
+                        <div class="col-6">
+                            <span class="text-white">Nombre : {{userDetails?.nombreusuario}}</span>
+                        </div>
+                        <div class="col-6">
+                            <span class="text-white"> No esta admitido en ninguna liga</span>
+                        </div>
+                    </div>
+            </div>
+            <div *ngIf="userDetails && userDetails?.rol=='ADMIN'" class="bg-primary rounded">
+                <p class="text-white" *ngIf="!userName">
+                    <app-detalles-usuario [childMessage]="userDetails?.nombreusuario"></app-detalles-usuario>
+                </p>
+                <p class="text-white" *ngIf="userName">
+                    <app-detalles-usuario [childMessage]="userName"></app-detalles-usuario>
+                </p>
+            </div>
+
+            <div *ngIf="userDetails && userDetails?.rol=='Admitido'" class="bg-primary rounded">
+                <p class="text-white" *ngIf="!userName">
+                    <app-detalles-usuario [childMessage]="userDetails?.nombreusuario"></app-detalles-usuario>
+                </p>
+                <p class="text-white" *ngIf="userName">
+                    <app-detalles-usuario [childMessage]="userDetails?.nombreusuario"></app-detalles-usuario>
+                </p>
+            </div>
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</div>
+
+
+<p-dialog position="top" header="Gestión Liga" [(visible)]="displayFinder" [breakpoints]="{'960px': '50vw'}" [style]="{width: '60vw', height: '11rem'}" [draggable]="true" [resizable]="false">
+    <p-menubar [model]="opcionesLiga">
+        <ng-template>
+        </ng-template>
+    </p-menubar>
+</p-dialog>
+
+<p-dialog position="top" header="Gestión Equipo" [(visible)]="displayFinderEquipo" [breakpoints]="{'960px': '50vw'}" [style]="{width: '40vw', height: '11rem'}" [draggable]="true" [resizable]="false">
+    <p-menubar [model]="ocpionesEquipo">
+        <ng-template>
+        </ng-template>
+    </p-menubar>
+</p-dialog>

@@ -1,0 +1,53 @@
+<p-toast position="top-center"></p-toast>
+<br><br>
+<div class="m-0  row justify-content-center align-items-center" *ngIf="this.mostrar==true">
+    <div class="col-auto p-5">
+        <form (ngSubmit)="confirmarOperacion()" [formGroup]="form" autocomplete="off">
+            <table>
+                <thead>
+                    <tr>
+                        <th class="ancho-columna">Equipo</th>
+                        <th class="ancho-columna">Cantidad</th>
+                        <th class="ancho-columna">Operación</th>
+                        <th class="ancho-columna">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="form-group">
+                                <!--Input indicando el campo que va a rellenar-->
+                                <select id="equipo" name="equipo" formControlName="equipo" style="height: 36px;">
+                                <option value=""  disabled>Seleccione un equipo</option>
+                                <option name="equipo" [value]="item.id" *ngFor="let item of liga.equipos">{{item.nombre}}</option>
+                              </select><br>
+                                <span class="form-text text-danger" *ngIf="notValidField('equipo')"> Debe seleccionar un equipo</span>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-group">
+                                <!--Input indicando el campo que va a rellenar-->
+                                <input type="number" id="cantidad" formControlName="cantidad" name="cantidad" class="form-control">
+                                <span class="form-text text-danger" *ngIf="notValidField('cantidad')"> {{CantidadErrorMsg}}</span>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-group">
+                                <!--Input indicando el campo que va a rellenar-->
+                                <select id="tipo" name="operacion" formControlName="operacion" style="height: 36px;">
+                                <option value="" disabled>Seleccione una operación</option>
+                                <option name="opciones " value="SUMA">SUMA</option>
+                                <option name="opciones " value="RESTA">RESTA</option>
+                              </select><br>
+                                <span class="form-text text-danger " *ngIf="notValidField( 'operacion') "> Debe seleccionar una operación</span>
+                            </div>
+                        </td>
+                        <td>
+                            <button type="submit " style="width: 100px;" class="btn btn-success " [disabled]="form.invalid " id="boton ">Enviar</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,90 @@
+<p-toast position="top-center">
+</p-toast>
+
+<p-toast position="top-right"></p-toast>
+<div class="container-fluid p-4 bg-white" *ngIf="mostrar">
+    <p-panel [toggleable]="true" [collapsed]="true">
+        <ng-template pTemplate="header">
+            <b>Mensajes de {{nombreUsuario}}</b>
+        </ng-template>
+        <ng-template pTemplate="icons">
+            <button pButton class="p-panel-header-icon p-link" icon="pi pi-cog" (click)="menu.toggle($event)">
+        </button>
+            <p-menu #menu id="config_menu" [model]="items" [popup]="true"></p-menu>
+        </ng-template>
+        <p>Historial de mensajes recibidos</p>
+    </p-panel>
+    <div class="card">
+        <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+            <p-table #dt [value]="listMensajes" responsiveLayout="stack" breakpoint="815px" [paginator]="true" [rows]="10" [showCurrentPageReport]="false" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [rowsPerPageOptions]="[5,10,20]"
+                [responsive]="true" [globalFilterFields]="['nombreEmisor','fecha','asunto','mensaje']">
+                <ng-template pTemplate="header" let-columns>
+                    <tr>
+                        <th>Usuario
+                            <p-columnFilter field="nombreEmisor" matchMode="in" [showMenu]="false">
+                                <ng-template pTemplate="filter" let-value let-filter="filterCallback">
+                                    <p-multiSelect [ngModel]="value" [options]="listUsuarios" (onChange)="filter($event.value)" [defaultLabel]="'Seleccione usuario'">
+                                        <ng-template let-option pTemplate="item">
+                                            <div class="p-multiselect-listUsuarios-option">
+                                                <span class="ml-1">{{option}}</span>
+                                            </div>
+                                        </ng-template>
+                                    </p-multiSelect>
+                                </ng-template>
+                            </p-columnFilter>
+                        </th>
+                        <th pSortableColumn="fecha">Fecha
+                            <p-sortIcon field="fecha"></p-sortIcon>
+                        </th>
+                        <th pSortableColumn="asunto">Asunto
+                            <p-sortIcon field="asunto"></p-sortIcon>
+                        </th>
+                        <th pSortableColumn="mensaje">Mensaje
+                            <p-sortIcon field="mensaje"></p-sortIcon>
+                        </th>
+                    </tr>
+                </ng-template>
+
+
+                <ng-template pTemplate="summary">
+                    <div class="flex align-items-center justify-content-between">
+                        En total hay {{listMensajes ? listMensajes.length : 0 }} mensajes.
+                    </div>
+                </ng-template>
+
+
+
+                <ng-template pTemplate="body" let-listMensajes let-columns="listMensajes">
+                    <tr>
+                        <td id="title">
+                            <span class="p-column-title" pSortableColumn="nombreEmisor">
+                            <strong>Usuario</strong>
+                            </span>{{listMensajes.nombreEmisor}}
+                        </td>
+                        <td>
+                            <span class="p-column-title" pSortableColumn="fecha">
+                            <strong>Fecha</strong>
+                            </span>{{listMensajes.fecha | date: 'MM/dd/yyyy, h:mm a'}}
+                        </td>
+                        <td>
+                            <span class="p-column-title" pSortableColumn="asunto">
+                            <strong>Asunto</strong>
+                            </span>{{listMensajes.asunto}}
+                        </td>
+                        <td class="puntero" (click)="detallesMensaje(listMensajes.mensaje, listMensajes.asunto)">
+                            <span class="p-column-title" pSortableColumn="mensaje">
+                          <strong>Mensaje</strong>
+                          </span>{{formatTextMensajeria(listMensajes.mensaje)}}
+                        </td>
+                    </tr>
+                </ng-template>
+            </p-table>
+
+            <p-dialog [(visible)]="dialogDetails" header="Mensaje detallado" [breakpoints]="{'960px': '75vw', '640px': '100vw'}" [style]="{width: '400px', height: '450px'}">
+                <p><b>{{asuntoMensaje}}</b></p>
+                <div class="form-group">
+                    <div col-md-4 mb-3>
+                        <textarea disabled class="form-control" [rows]="10" [cols]="20" pInputTextarea autoResize="autoResize">{{mensajeDetails}}</textarea>
+                    </div>
+                </div>
+            </p-dialog>

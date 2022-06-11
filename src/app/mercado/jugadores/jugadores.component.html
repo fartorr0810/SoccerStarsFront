@@ -1,0 +1,31 @@
+<p-toast position="top-center"></p-toast>
+<br>
+<div class="table-responsive">
+    <!--Indicamos el datatable con las opciones y el disparador-->
+    <table style="width: 100%" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
+        <thead>
+            <tr>
+                <th class="ancho-columna">Nombre</th>
+                <th class="ancho-columna">Edad</th>
+                <th class="ancho-columna">Estado</th>
+                <th class="ancho-columna">Índice de Victoria</th>
+                <th class="ancho-columna">Valor de Mercado</th>
+                <th class="ancho-columna">Precio</th>
+                <th class="ancho-columna">Acción</th>
+            </tr>
+        </thead>
+        <!--Recorremos con un For la respuesta-->
+        <tbody>
+            <tr *ngFor="let jugador of listajugadores">
+                <td name="jugador">{{jugador.nombre}}</td>
+                <td>{{jugador.edad}}</td>
+                <td *ngIf="jugador.estatus=='libre'">Libre</td>
+                <td *ngIf="jugador.estatus=='en venta'">En venta</td>
+                <td>{{jugador.indiceVictoria | number : '1.2-2'}} %</td>
+                <td>{{jugador.precio | number}} €</td>
+                <td><input id="input" type="number" id={{jugador.id}} name="cantidad"></td>
+                <td><button class="btn btn-success" name="comprar" (click)="comprarJugador(jugador.id)">Comprar</button></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
