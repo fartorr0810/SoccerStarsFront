@@ -2,18 +2,18 @@
 
 <div class="d-flex align-items-center justify-content-center justify-content-md-between py-3 rounded-left rounded-bottom rounded-top" style="background-color: #3e6540;">
     <a href="/" class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-white text-decoration-none">
-        <img class="bi me-5" width="200px" height="60px" src="../../../../assets/img/logoverdadero.png" alt="Logo de la pagina" />
+        <img class="bi me-5" width="200px" height="60px" src="assets/img/logoverdadero.png" alt="Logo de la pagina" />
     </a>
 
     <div class="col-md-3 text-end" *ngIf="userDetails">
         <a routerLink="/buzon" class="">
-            <img class="bi me-2 img-fluid" width="50" height="50" src="../../../assets/img/sobre.png" alt="Icono de mensajes" />
+            <img class="bi me-2 img-fluid" width="50" height="50" src="assets/img/sobre.png" alt="Icono de mensajes" />
         </a>
         <a [routerLink]="['/usuario']" class="">
-            <img class="bi me-2 img-fluid" width="50" height="50" src="../../../assets/img/userprofilee.png" alt="Imagen del usuario" />
+            <img class="bi me-2 img-fluid" width="50" height="50" src="assets/img/userprofilee.png" alt="Imagen del usuario" />
         </a>
         <a id="cerrarsesion" class="" style="outline: none" (click)="cerrarSesion()">
-            <img class="bi me-2 img-fluid" width="50" height="50" src="../../../assets/img/exit.png" alt="Cerrar sesion" />
+            <img class="bi me-2 img-fluid" width="50" height="50" src="assets/img/exit.png" alt="Cerrar sesion" />
         </a>
     </div>
 </div>

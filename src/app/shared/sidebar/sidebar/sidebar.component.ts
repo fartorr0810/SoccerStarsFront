@@ -56,17 +56,17 @@ export class SidebarComponent implements OnInit {
     this.dockItems = [
       {
           label: 'Login',
-          icon: "./../../../../assets/img/login.png",
+          icon: "assets/img/login.png",
           routerLink: ['/login']
       },
       {
         label: 'Registro',
-        icon: "./../../../../assets/img/registrationn.png",
+        icon: "assets/img/registrationn.png",
         routerLink: ['/registro']
       },
       {
         label: 'Contacto',
-        icon: "./../../../../assets/img/contacto.png",
+        icon: "assets/img/contacto.png",
         routerLink: ['/contacto']
       }
   ];
@@ -75,13 +75,13 @@ export class SidebarComponent implements OnInit {
 
       {
         label:'Buscar_Liga',
-        icon:"./../../../../assets/img/lupa.png",
+        icon:"assets/img/lupa.png",
         routerLink:['/buscarliga']
 
       },
       {
         label: 'Contacto',
-        icon: "./../../../../assets/img/contacto.png",
+        icon: "assets/img/contacto.png",
         routerLink: ['/contacto']
       }
 
@@ -91,21 +91,21 @@ export class SidebarComponent implements OnInit {
     this.dockItemsAdmin=[
       {
         label:'Comunidad',
-        icon:"./../../../../assets/img/comunidad.png",
+        icon:"assets/img/comunidad.png",
         routerLink: ['/crearmensajecomunidad']
       },
       {
         label: 'Liga',
-        icon: "./../../../../assets/img/balon.png",
+        icon: "assets/img/balon.png",
       },
       {
         label:'Ver jornadas',
-        icon: "./../../../../assets/img/calendario.png",
+        icon: "assets/img/calendario.png",
         routerLink: ['/jornada']
       },
       {
         label: 'Contacto',
-        icon: "./../../../../assets/img/contacto.png",
+        icon: "assets/img/contacto.png",
         routerLink: ['/contacto']
       }
     ];
@@ -138,26 +138,26 @@ export class SidebarComponent implements OnInit {
     this.dockItemsAdmitido=[
       {
         label:'Mensaje',
-        icon:"./../../../../assets/img/comunidad.png",
+        icon:"assets/img/comunidad.png",
         routerLink:['/mensajescomunidad']
       },
       {
         label:'Equipo',
-        icon:"./../../../../assets/img/equipo.png"
+        icon:"assets/img/equipo.png"
       },
       {
         label:'Clasificacion',
-        icon:"./../../../../assets/img/ranking.png",
+        icon:"assets/img/ranking.png",
         routerLink:['/clasificacion']
       },
       {
         label:'Mercado',
-        icon:"./../../../../assets/img/transfer.png",
+        icon:"assets/img/transfer.png",
         routerLink:['/mercado']
       },
       {
         label: 'Contacto',
-        icon: "./../../../../assets/img/contacto.png",
+        icon: "assets/img/contacto.png",
         routerLink: ['/contacto']
       }
 
