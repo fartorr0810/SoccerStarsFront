@@ -73,8 +73,7 @@ export class LigaService {
       cantidad: operacion.cantidad,
       tipo:operacion.tipoo
     }
-    console.log(idequipo);
-    console.log(operacionueva);
+
     const httpHeaders=new HttpHeaders().set('Authorization',`Bearer ${localStorage.getItem('token')}`);
     return this.http.put<boolean>(url,operacionueva,{ headers: httpHeaders});
   }

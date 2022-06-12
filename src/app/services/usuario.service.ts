@@ -36,7 +36,6 @@ export class UsuarioService {
 
   editarUser(id:number,userEdit:UsuarioEdit ):Observable<UsuarioResponse>{
     let direccionurl=`${this.baseUrl}user/${id}`;
-    console.log(direccionurl);
     const httpHeaders=new HttpHeaders().set('Authorization',`Bearer ${localStorage.getItem('token')}`);
     return this.http.put<UsuarioResponse>(direccionurl,userEdit,{headers:httpHeaders});
   }
