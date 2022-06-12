@@ -63,7 +63,6 @@ export class CrearmensajecomunidadComponent implements OnInit {
     this.servicioLiga.obtenerLigas().subscribe({
       next:(resp=>{
         this.noti.liga=resp.nombre;
-        console.log(this.noti.liga);
       }),
       error:(err=>{
         this.messageService.add({severity:'error',detail:err.error.mensaje, life:1500});
