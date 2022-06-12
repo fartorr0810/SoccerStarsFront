@@ -15,11 +15,11 @@
                     <td>
                         <div class="card-body" *ngIf="equipo.imagen!=null">
                             <div class="box">
-                                <img src={{obtenerImagen(equipo)}}>
+                                <img src={{obtenerImagen(equipo)}} alt="Escudo del equipo">
                             </div>
                         </div>
                         <div class="card-body" *ngIf="equipo.imagen==null">
-                            <div class="box"><img src="./../../../assets/img/logo.png"></div>
+                            <div class="box"><img src="assets/img/logo.png" alt="Escudo del equipo por defecto"></div>
                         </div>
 
                     </td>

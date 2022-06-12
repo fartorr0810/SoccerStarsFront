@@ -17,15 +17,15 @@
                                 <span class="text-success" *ngIf="this.idEquipo==partido.local.id"><strong>{{partido.local.nombre}}</strong></span>
                             </td>
                             <td style="text-align: center;">
-                                <img *ngIf="partido.local.imagen!=null" src={{obtenerImagen(partido.local)}} alt={{partido.local.nombre}}>
-                                <img *ngIf="partido.local.imagen==null" src="./../../../assets/img/logo.png">
+                                <img alt="Imagen del escudo del equipo local" *ngIf="partido.local.imagen!=null" src={{obtenerImagen(partido.local)}} alt={{partido.local.nombre}}>
+                                <img alt="Imagen del escudo del equipo local" *ngIf="partido.local.imagen==null" src="assets/img/logo.png">
                             </td>
                             <td><span *ngIf="partido.jugado"><strong>{{partido.golesLocal}}</strong></span></td>
                             <td *ngIf="partido.jugado">-</td>
                             <td><span *ngIf="partido.jugado"><strong>{{partido.golesVisitante}}</strong></span></td>
                             <td style="text-align: center;">
-                                <img *ngIf="partido.visitante.imagen!=null" src={{obtenerImagen(partido.visitante)}} alt={{partido.visitante.nombre}}>
-                                <img *ngIf="partido.visitante.imagen==null" src="./../../../assets/img/logo.png">
+                                <img  alt="Imagen del escudo del equipo visitante" *ngIf="partido.visitante.imagen!=null" src={{obtenerImagen(partido.visitante)}} alt={{partido.visitante.nombre}}>
+                                <img alt="Imagen del escudo del equipo visitante" *ngIf="partido.visitante.imagen==null" src="assets/img/logo.png">
                             </td>
                             <td>
                                 <span *ngIf="this.idEquipo!=partido.visitante.id"><strong>{{partido.visitante.nombre}}</strong></span>

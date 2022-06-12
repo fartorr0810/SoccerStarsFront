@@ -9,10 +9,10 @@
                             <h2 class="text-uppercase text-center mb-5">Edita tu equipo</h2>
                             <div class="card border-white text-white">
                                 <div class="box" *ngIf="equipo.imagen!=null">
-                                    <img class="mx-auto d-block" src="{{obtenerImagen(equipo)}}">
+                                    <img alt="imagen del equipo" class="mx-auto d-block" src="{{obtenerImagen(equipo)}}">
                                 </div>
 
-                                <img class="mx-auto d-block" *ngIf="equipo.imagen==null" src="../../../assets/img/logo.png">
+                                <img class="mx-auto d-block" *ngIf="equipo.imagen==null" src="assets/img/logo.png">
                             </div>
                             <!--Formulario reactivo-->
                             <!--Tiene span con mensajes de error en caso de que lo introducido sea invalido

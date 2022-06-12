@@ -14,15 +14,15 @@
                         <tr>
                             <td><strong>{{partido.local.nombre}}</strong></td>
                             <td style="text-align: center;">
-                                <img *ngIf="partido.local.imagen!=null" src={{obtenerImagen(partido.local)}} alt={{partido.local.nombre}}>
-                                <img *ngIf="partido.local.imagen==null" src="./../../../assets/img/logo.png">
+                                <img alt="Imagen del escudo del equipo local" *ngIf="partido.local.imagen!=null" src={{obtenerImagen(partido.local)}} alt={{partido.local.nombre}}>
+                                <img alt="Imagen del escudo del equipo local" *ngIf="partido.local.imagen==null" src="assets/img/logo.png">
                             </td>
                             <td><span *ngIf="partido.jugado"><strong>{{partido.golesLocal}}</strong></span></td>
                             <td *ngIf="partido.jugado">-</td>
                             <td><span *ngIf="partido.jugado"><strong>{{partido.golesVisitante}}</strong></span></td>
                             <td style="text-align: center;">
                                 <img *ngIf="partido.visitante.imagen!=null" src={{obtenerImagen(partido.visitante)}} alt={{partido.visitante.nombre}}>
-                                <img *ngIf="partido.visitante.imagen==null" src="./../../../assets/img/logo.png">
+                                <img *ngIf="partido.visitante.imagen==null" src="assets/img/logo.png">
                             </td>
                             <td><strong>{{partido.visitante.nombre}}</strong></td>
                         </tr>
