@@ -14,5 +14,10 @@
 
 .dockCustomAdmitido {
     position: relative !important;
+    top: 14.4rem !important;
+}
+
+.dockCustomAdmin {
+    position: relative !important;
     top: 12.5rem !important;
 }

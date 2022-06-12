@@ -48,7 +48,7 @@
 
 
                 <div *ngIf="userDetails && userDetails?.rol =='ADMIN'" class="w-100">
-                    <p-dock [model]="dockItemsAdmin" position="left" class="dockCustomAdmitido">
+                    <p-dock [model]="dockItemsAdmin" position="left" class="dockCustomAdmin">
                         <ng-template pTemplate="item" let-item>
                             <img [src]="item.icon" title="Noticias comunidad" *ngIf="item.label=='Comunidad'" [alt]="item.label" width="90%">
                             <img [src]="item.icon" title="Gestión liga" *ngIf="item.label=='Liga'" (click)="abrirMenuLiga()" [alt]="item.label" width="90%">
