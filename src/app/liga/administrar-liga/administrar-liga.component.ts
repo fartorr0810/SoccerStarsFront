@@ -58,7 +58,7 @@ export class AdministrarLigaComponent implements OnInit {
       lengthMenu: [5,10,20],
       responsive:true,
       language: {
-        url: 'http://cdn.datatables.net/plug-ins/1.11.5/i18n/es-ES.json'
+        url: 'https://cdn.datatables.net/plug-ins/1.11.5/i18n/es-ES.json'
       }
     };
   }

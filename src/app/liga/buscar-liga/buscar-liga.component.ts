@@ -49,7 +49,7 @@ export class BuscarLigaComponent implements OnInit {
         pagingType:'full_numbers',
         pageLength:10,
         language:{
-          url:"http://cdn.datatables.net/plug-ins/1.11.5/i18n/es-ES.json"
+          url:"https://cdn.datatables.net/plug-ins/1.11.5/i18n/es-ES.json"
         }
       }
     }
